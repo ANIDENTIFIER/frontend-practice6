@@ -88,15 +88,28 @@ const renderLineChart = (data) => {
             },
         },
     });
+
+    barChart.on("click", p => {
+        const target = p.seriesName; // 获得点击的柱的name
+        lineChart.data.datasets.forEach(dataset => {
+            // 遍历折线图的每一条线，如果名字对上了，就把这条线加粗，否则恢复原粗细
+            if (dataset.label === target) {
+                dataset.borderWidth = 6;
+            } else {
+                dataset.borderWidth = 1;
+            }
+        });
+        lineChart.update();
+    });
 };
+
+loadData();
 
 window.addEventListener("resize", () => {
     if (barChart) barChart.resize();
     // Chart.js响应式默认自动处理，无需手动
 });
 
-loadData();
-
 $('#cards').on('click', '.card', function () {    // 事件委托：jQuery内置写法
-  $(this).toggleClass('border-primary shadow');
+    $(this).toggleClass('border-primary shadow');
 });
