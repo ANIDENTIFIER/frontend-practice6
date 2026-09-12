@@ -96,3 +96,7 @@ window.addEventListener("resize", () => {
 });
 
 loadData();
+
+$('#cards').on('click', '.card', function () {    // 事件委托：jQuery内置写法
+  $(this).toggleClass('border-primary shadow');
+});
