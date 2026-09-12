@@ -100,42 +100,42 @@ const renderBarChart = (data) => {
     });
 };
 
-// let lineChart = null;
+let lineChart = null;
 
-// const renderLineChart = (data) => {
-//     if (lineChart !== null) {
-//         lineChart.destroy(); // 防重复初始化
-//     }
-//     const ctx = document.querySelector("#pie-chart");
-//     lineChart = new Chart(ctx, {
-//         type: "pie",
-//         data: {
-//             labels: ["可用", "已占用", "暂停使用"],
-//             datasets: [
-//                 {
-//                     data: [
-//                         data.series.available.reduce((sum, n) => sum + n, 0),
-//                         data.series.occupied.reduce((sum, n) => sum + n, 0),
-//                         data.series.unavailable.reduce((sum, n) => sum + n, 0),
-//                     ],
-//                     backgroundColor: [
-//                     "#5470C6", // 绿色：可用
-//                     "#FAC858", // 蓝色：占用
-//                     "#6c757d", // 灰色：暂停使用
-//                     ],
-//                     borderWidth: 1,
-//                 },
-//             ],
-//         },
-//         options: {
-//             responsive: true,
-//             maintainAspectRatio: false,
-//             plugins: {
-//                 title: { display: true, text: "图书馆座位使用情况" },
-//             },
-//         },
-//     });
-// };
+const renderLineChart = (data) => {
+    if (lineChart !== null) {
+        lineChart.destroy(); // 防重复初始化
+    }
+    const ctx = document.querySelector("#pie-chart");
+    lineChart = new Chart(ctx, {
+        type: "pie",
+        data: {
+            labels: ["可用", "已占用", "暂停使用"],
+            datasets: [
+                {
+                    data: [
+                        data.series.available.reduce((sum, n) => sum + n, 0),
+                        data.series.occupied.reduce((sum, n) => sum + n, 0),
+                        data.series.unavailable.reduce((sum, n) => sum + n, 0),
+                    ],
+                    backgroundColor: [
+                    "#5470C6", // 绿色：可用
+                    "#FAC858", // 蓝色：占用
+                    "#6c757d", // 灰色：暂停使用
+                    ],
+                    borderWidth: 1,
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: { display: true, text: "图书馆座位使用情况" },
+            },
+        },
+    });
+};
 
 window.addEventListener("resize", () => {
     if (barChart) barChart.resize();
